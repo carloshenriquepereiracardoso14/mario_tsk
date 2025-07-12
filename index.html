@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Tarefas Mario Bross</title>
+    <link rel="shortcut icon" href="src/img/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="src/css/style.css">
+
+  <link rel="manifest" href="manifest.webmanifest">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('Service Worker registered!'));
+    }
+  </script>
+
+</head>
+
+<body>
+    <div class="cont-img-flutuante">
+        <img src="src/img/img-chara-08.png" alt="image" class="img flutuante" style="animation-delay: .5s;">
+        <img src="src/img/img-chara-10.png" alt="image" class="img flutuante" style=" animation-delay: 2s;">
+        <img src="src/img/img-chara-14.png" alt="image" class="img flutuante" style="animation-delay: 4s;">
+    </div>
+
+    <div class="opacidade"></div>
+    <div class="container">
+        <img src="src/img/logo.png" alt="logo" class="logo">
+        <div class="cont-conteudo">
+            <img src="src/img/img-chara-07.png" alt="chara" class="img"
+                style="right: 0; top: -30px; animation-delay: .5s;">
+            <img src="src/img/mario.png" alt="mario bross" class="img"
+                style="top: -65px; left: 0; animation-delay: 1s;">
+
+
+            <div class="cont-animacao">
+                <img src="src/img/clouds.png" alt="nuvens" class="nuvens" style="animation-delay: 1s; top: 15px;">
+                <img src="src/img/clouds.png" alt="nuvens" class="nuvens" style="animation-delay: 2s; top: 8px;">
+                <img src="src/img/clouds.png" alt="nuvens" class="nuvens" style="animation-delay: 3s; top: 20px;">
+                <img src="src/img/mario.gif" alt="mario" class="mario-gif">
+                <img src="src/img/pipe.png" alt="cano" class="cano">
+                <img src="src/img/gramado.png" alt="gramado" class="gramado">
+            </div>
+
+            <header class="barra-topo">
+                <div class="cont-add-tarefa">
+                    <input type="text" placeholder="Digite sua tarefa ..." id="tarefa">
+                    <button class="btn-add" onclick="adicionarTarefa()">
+                        <div class="circulo"></div>
+                        <div class="circulo"></div>
+                        <div class="circulo"></div>
+                        <div class="circulo"></div>
+
+                        Criar Tarefa
+                        <img src="src/img/cogumelo.png" alt="cogumelo">
+                    </button>
+                </div>
+            </header>
+
+            <ul class="lista-tarefa">
+
+            </ul>
+        </div>
+    </div>
+
+    <audio src="src/audio/Efeito sonoro Super Mario Bross - Super Mario Bross sound effect(MP3_160K).mp3"
+        id="audio-concluida"></audio>
+    <script src="src/js/js.js"></script>
+</body>
+
+</html>
