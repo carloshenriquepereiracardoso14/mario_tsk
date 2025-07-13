@@ -1,6 +1,6 @@
 {
   "name": "Mario Task",
-  "short_name": "MarioTask",
+  "short_name": "Mario Task",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ffffff",

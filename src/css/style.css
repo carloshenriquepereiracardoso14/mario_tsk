@@ -8,7 +8,7 @@
 }
 
 body {
-    background: url(/src/img/wallpaper.webp) no-repeat center center;
+    background: url(/src/img/wallpaper_mario.png) no-repeat center center;
     object-fit: cover;
     width: 100%;
     height: 100vh;
@@ -518,6 +518,10 @@ li:hover .cont-status {
 }
   
 @media (max-width: 950px) {
+    body {
+        background: url(/src/img/Mario\ no\ Mundo\ Colorido.png) no-repeat center center;
+    }
+
     .container {
         padding: 30px 10px;
     }
