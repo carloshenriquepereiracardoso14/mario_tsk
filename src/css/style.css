@@ -138,7 +138,7 @@ body {
 
 @keyframes nuvens {
     0% {
-        transform: translateX(0);
+        transform: translateX(-10vw);
     }
 
     100% {
@@ -359,9 +359,9 @@ li {
     border-radius: 6px;
     outline: none;
     border: none;
-    background: red;
+    background: #009CDA;
     cursor: pointer;
-    box-shadow: 5px 5px rgb(175, 0, 0);
+    box-shadow: 5px 5px #006188;
     transition: all .3s ease-in-out;
     font-size: .6rem;
     color: #FFFFFF;
@@ -370,7 +370,7 @@ li {
 
 .btn-remove:hover {
     transform: translateY(3px);
-    box-shadow: 3px 3px rgb(175, 0, 0);
+    box-shadow: 3px 3px #006188;
 }
 
 .circulo-remove {
@@ -418,14 +418,10 @@ li {
     box-shadow: 0 0 5px rgba(0, 0, 0, .4);
     background: rgb(28, 211, 28);
     color: #FFFFFF;
-    font-weight: 600;
-    font-size: 1.3rem;    
+    font-weight: 500;
+    font-size: 1rem;    
     border: 2px solid #FFFFFF;
     transition: all 0.3s ease-in-out;
-}
-
-.btn-concluida h1 {
-    transform: translateY(-3px);
 }
 
 .btn-concluida:hover {
