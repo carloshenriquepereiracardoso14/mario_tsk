@@ -518,10 +518,6 @@ li:hover .cont-status {
 }
   
 @media (max-width: 950px) {
-    body {
-        background: url(/src/img/Mario\ no\ Mundo\ Colorido.png) no-repeat center center;
-    }
-
     .container {
         padding: 30px 10px;
     }
