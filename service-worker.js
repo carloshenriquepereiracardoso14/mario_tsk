@@ -1,5 +1,6 @@
 
 self.addEventListener('install', function(event) {
+  self.skipWaiting(); 
   event.waitUntil(
     caches.open('mario-task-cache').then(function(cache) {
       return cache.addAll([
