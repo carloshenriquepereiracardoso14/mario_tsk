@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 600,
+  'GRAD' 0,
+  'opsz' 32
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -20,12 +28,122 @@ body {
     overflow: hidden;
 }
 
-.opacidade {
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, .6);
+.modal-editar {
     position: absolute;
-    z-index: 1;
+    z-index: 1003;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -200vh);
+    padding: 50px 25px;
+    background: #0023bd;
+    border-radius: 14px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, .3);
+    transition: transform .8s ease-in-out;
+}
+
+.ativo {
+    transform: translate(-50%, -50%);
+}
+
+.modal-editar input {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    border-radius: 14px;
+    box-shadow: 0 0 5px #0056797e;
+    background: #009CDA;
+    outline: none;
+    border: none;
+    transition: all .3s ease-in-out;
+    color: #FFFFFF;
+    font-size: .5rem;
+    border: 2px solid #FFFFFF;
+}
+
+.modal-editar input::placeholder {
+    color: #FFFFFF;
+}
+
+.modal-editar input:focus {
+    box-shadow: 5px 5px 0 #005779;
+    transform: translateY(-3px);
+}
+
+.material-symbols-outlined.close-modal {
+    font-size: 2rem !important;
+    color: #FFFFFF;
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+#texto-tarefa {
+    outline: none;
+    border: none;
+    padding: 8px;
+    border-radius: 14px;
+    resize: none; 
+    width: 100%;
+    height: 300px;
+    font-size: .6rem;
+    line-height: 18px;
+    background: #009CDA;
+    color: #FFFFFF;
+    transition: all .3s ease-in-out;
+    border: 2px solid transparent;
+}
+
+#texto-tarefa:focus {
+    border: 2px solid #FFFFFF;
+}
+
+.btn-editar {
+    width: 50px;
+    height: 50px;
+    border-radius: 6px;
+    outline: none;
+    background: gold;
+    border: none;
+    position: relative;
+    border: 2px solid #FFFFFF;
+    color: #FFFFFF;
+}
+
+.btn-editar span {
+    font-size: 1.5rem;
+}
+
+.circulo-edit {
+    width: 5px;
+    height: 5px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(227, 227, 227, 1) 50%, rgba(201, 201, 201, 1) 100%);    position: absolute;
+    border-radius: 50%;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .4);
+}
+
+.circulo-edit:nth-child(2) {
+    top: 5px;
+    left: 5px;
+}
+
+.circulo-edit:nth-child(3) {
+    right: 5px;
+    top: 5px;
+}
+
+.circulo-edit:nth-child(4) {
+    right: 5px;
+    bottom: 5px;
+}
+
+.circulo-edit:nth-child(5) {
+    left: 5px;
+    bottom: 5px;
 }
 
 .container {
@@ -236,17 +354,24 @@ body {
     width: 85%;
 }
 
+.cont-input-add {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex: 2;
+}
+
 .cont-add-tarefa input {
     outline: none;
     border: 3px solid transparent;
     height: 45px;
-    flex: 2;
+    width: 100%;
     padding: 15px;
     background: #0023bd;
     border-radius: 12px;
     color: #FFFFFF;
     box-shadow: 0 0 5px rgba(0, 0, 0, .6);
-    font-size: .7rem;
+    font-size: .5rem;
     transition: all .3s ease-in-out;
 }
 
@@ -335,7 +460,7 @@ body {
 li {
     display: flex;
     width: 100%;
-    align-items: center;
+    align-items:start;
     justify-content: space-between;
     background: #333;
     padding: 20px;
@@ -343,25 +468,47 @@ li {
     position: relative;
     z-index: 1000;
     color: #FFFFFF;
-    font-size: .7rem;
+    font-size: .6rem;
     line-height: 1.3rem;
 }
 
 .texto-tarefa {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     flex: 1;
     word-break: break-word;
     padding-right: 10px;
+    width: 100%;
+    padding: 5px;
+}
+
+.nome-tarefa {
+    padding: 8px;
+    border-radius: 6px;
+    background: #FFFFFF;
+    color: #333;
+    max-width: 200px;
+    width: fit-content;
+}
+
+.cont-actions {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    align-items: center;
+    padding: 8px;
 }
 
 .btn-remove {
-    width: 150px;
+    width: 50px;
     height: 50px;
     border-radius: 6px;
     outline: none;
-    border: none;
+    border: 2px solid #FFFFFF;
     background: #009CDA;
     cursor: pointer;
-    box-shadow: 5px 5px #006188;
+    box-shadow: 3px 3px #006188;
     transition: all .3s ease-in-out;
     font-size: .6rem;
     color: #FFFFFF;
@@ -370,12 +517,12 @@ li {
 
 .btn-remove:hover {
     transform: translateY(3px);
-    box-shadow: 3px 3px #006188;
+    box-shadow: 1px 1px #006188;
 }
 
 .circulo-remove {
-    width: 10px;
-    height: 10px;
+    width: 5px;
+    height: 5px;
     background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(227, 227, 227, 1) 50%, rgba(201, 201, 201, 1) 100%);    position: absolute;
     border-radius: 50%;
     box-shadow: 0 0 4px rgba(0, 0, 0, .4);
@@ -401,16 +548,33 @@ li {
     bottom: 5px;
 }
 
+.btn-abrir-modal {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    border: 2px solid #FFFFFF;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0023bd;
+    color: #FFFFFF;
+    box-shadow: 4px 4px 0 #00177e;
+    transition: all .3s ease-in-out;
+}
+
+.btn-abrir-modal:hover {
+    box-shadow: 1px 1px 0 #00177e;
+    transform: translateY(3px);
+}
+
 .btn-concluida {
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    right: -20px;
-    top: -15px;
+    width: 50px;
+    height: 50px;
     z-index: 1000;
     border-radius: 50%;
     outline: none;
@@ -469,10 +633,6 @@ li:hover .cont-status {
 }
 
 @media (max-width: 768px) {
-    .btn-remove {
-        width: 100%;
-    }
-
     .btn-concluida {
         top: -18px;
         right: 5px;
@@ -494,6 +654,10 @@ li:hover .cont-status {
     .cano {
         width: 5%;
         bottom: 8%;
+    }
+
+    .modal-editar {
+        width: 90%;
     }
 }
 
@@ -539,10 +703,10 @@ li:hover .cont-status {
         min-height: 60px;
     }
 
-    .cont-add-tarefa input {
+    .cont-input-add {
         width: 100%;
-        min-height: 60px;
     }
+
 
     li {
         flex-direction: column;
@@ -565,10 +729,6 @@ li:hover .cont-status {
         top: 10px;
     }
 
-    .btn-concluida {
-        right: 10px;
-    }
-
     .flutuante {
         animation: mover 8s infinite linear, flutuar 1s infinite alternate ease-in-out;
     }
@@ -580,10 +740,9 @@ li:hover .cont-status {
     .texto-tarefa {
         padding-right: 0;
     }
-}
 
-@media (min-width: 769px) and (max-width: 950px) {
-    .btn-remove {
-        width: 50%;
+    .cont-actions {
+        width: 100%;
+        gap: 25px;
     }
 }

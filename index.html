@@ -8,13 +8,16 @@
     <link rel="shortcut icon" href="src/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="src/css/style.css">
 
-  <link rel="manifest" href="manifest.webmanifest">
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js')
-        .then(() => console.log('Service Worker registered!'));
-    }
-  </script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <link rel="manifest" href="manifest.webmanifest">
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js')
+                .then(() => console.log('Service Worker registered!'));
+        }
+    </script>
 
 </head>
 
@@ -25,7 +28,24 @@
         <img src="src/img/img-chara-14.png" alt="image" class="img flutuante" style="animation-delay: 4s;">
     </div>
 
-    <div class="opacidade"></div>
+    <div class="modal-editar">
+        <span class="material-symbols-outlined close-modal" onclick="contModal()">
+            cancel
+        </span>
+        <input type="text" placeholder="nome da tarefa ..." id="nome-tarefa-edit">
+        <textarea name="texto-tarefa" id="texto-tarefa" cols="30" rows="10"></textarea>
+        <button onclick="salvarEdicao()" class="btn-editar">
+            <span class="material-symbols-outlined">
+                edit
+            </span>
+
+            <div class="circulo-edit"></div>
+            <div class="circulo-edit"></div>
+            <div class="circulo-edit"></div>
+            <div class="circulo-edit"></div>
+        </button>
+    </div>
+
     <div class="container">
         <img src="src/img/logo.png" alt="logo" class="logo">
         <div class="cont-conteudo">
@@ -46,7 +66,11 @@
 
             <header class="barra-topo">
                 <div class="cont-add-tarefa">
-                    <input type="text" placeholder="Digite sua tarefa ..." id="tarefa">
+                    <div class="cont-input-add">
+                        <input type="text" placeholder="Digite o nome da sua tarefa ..." id="nome-tarefa">
+                        <input type="text" placeholder="Digite sua tarefa ..." id="tarefa">
+                    </div>
+
                     <button class="btn-add" onclick="adicionarTarefa()">
                         <div class="circulo"></div>
                         <div class="circulo"></div>

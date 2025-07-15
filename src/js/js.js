@@ -3,20 +3,24 @@ document.addEventListener("DOMContentLoaded", carregarTarefas);
 function adicionarTarefa() {
     const tarefaInput = document.getElementById('tarefa');
     const tarefa = tarefaInput.value.trim();
+    const nomeTarefaInput = document.getElementById("nome-tarefa");
+    const nome = nomeTarefaInput.value.trim();
 
-    if(tarefa === "") {
-        alert("Preencha sua tarefa!");
+    if(tarefa === "" || nome === "") {
+        alert("Preencha o nome da tarefa e sua tarefa!");
         return;
     }
 
     const tarefas = obterTarefas();
     tarefas.push({
         texto: tarefa,
+        nome: nome,
         concluida: false
     });
     salvarTarefas(tarefas);
 
     tarefaInput.value = '';
+    nomeTarefaInput.value = '';
     carregarTarefas();
 }
 
@@ -29,24 +33,39 @@ function carregarTarefas() {
         const li = document.createElement('li');
         
         li.innerHTML = `
+
             <div class="cont-status">
                 <img src="src/img/MarioHub_Characters_CharBtn_Yoshi_off.png" class="yoshi">
                 <span class="texto-status">${tarefa.concluida ? 'Tarefa Concluída' : 'Falta Concluir!'}</span>
             </div>
 
-            <div class="texto-tarefa ${tarefa.concluida ? 'concluida' : ''}">${tarefa.texto}</div>
-            <button class="btn-remove" onclick="removerTarefa(${index})">
-            <div class="circulo-remove"></div>
-            <div class="circulo-remove"></div>
-            <div class="circulo-remove"></div>
-            <div class="circulo-remove"></div>
-            Remover
+            <div class="texto-tarefa ${tarefa.concluida ? 'concluida' : ''}">
+                <p class="nome-tarefa">${tarefa.nome}</p>
+                <p>${tarefa.texto}</p>
+            </div>
 
-            </button>
+            <div class="cont-actions">
+                <button class="btn-remove" onclick="removerTarefa(${index})">
+                    <div class="circulo-remove"></div>
+                    <div class="circulo-remove"></div>
+                    <div class="circulo-remove"></div>
+                    <div class="circulo-remove"></div>
+                    <span class="material-symbols-outlined">
+                    delete
+                    </span>
 
-            <button onclick="marcarTarefa(${index})" class="btn-concluida">
-                <h1>+</h1>
-            </button>
+                </button>
+
+                <button onclick="marcarTarefa(${index})" class="btn-concluida">
+                    <h1>+</h1>
+                </button>
+
+                <button onclick="editarTarefa(${index}); contModal()" class="btn-abrir-modal">
+                    <span class="material-symbols-outlined">
+                        edit
+                    </span>
+                </button>
+            </div>
 
         `;
 
@@ -89,3 +108,50 @@ function marcarTarefa(index) {
     }
     
 }
+
+let tarefaEditandoIndex = null;
+
+function editarTarefa(index) {
+    const tarefas = obterTarefas();
+    const tarefaTexto = document.getElementById("texto-tarefa");
+    const nomeTarefa = document.getElementById("nome-tarefa-edit");
+    nomeTarefa.value = tarefas[index].nome;
+    tarefaTexto.value = tarefas[index].texto;
+
+    tarefaEditandoIndex = index;
+}
+
+function salvarEdicao() {
+    if (tarefaEditandoIndex === null) return;
+
+    const tarefaTexto = document.getElementById("texto-tarefa").value.trim();
+    const nomeTarefa = document.getElementById("nome-tarefa-edit").value.trim();
+
+    if (tarefaTexto === "" || nomeTarefa === "") {
+        alert("Preencha o nome e a tarefa!");
+        return;
+    }
+
+    const tarefas = obterTarefas();
+    tarefas[tarefaEditandoIndex].texto = tarefaTexto;
+    tarefas[tarefaEditandoIndex].nome = nomeTarefa;
+
+    salvarTarefas(tarefas);
+    carregarTarefas();
+    contModal();
+    tarefaEditandoIndex = null;
+}
+
+const modal = document.querySelector(".modal-editar");
+
+function contModal() {
+    modal.classList.toggle("ativo");
+}
+
+document.addEventListener("click", function(event) {
+    if (modal.classList.contains("ativo")) {
+        if (!modal.contains(event.target) && !event.target.closest(".btn-abrir-modal")) {
+            modal.classList.remove("ativo");
+        }
+    }
+});
